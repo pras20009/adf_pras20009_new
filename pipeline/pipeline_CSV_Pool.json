@@ -26,11 +26,164 @@
 							"type": "DelimitedTextReadSettings"
 						}
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Correlation id",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Correlationid",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Operation name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Operationname",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Status",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Status",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Event category",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Eventcategory",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Level",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Level",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Time",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Time",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "Subscription",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Subscription",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Event initiated by",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Eventinitiatedby",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Resource type",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Resourcetype",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Resource group",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Resourcegroup",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Resource",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Resource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
 						"referenceName": "DelimitedText_git_forcsv",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSynapseAnalyticsTable_git",
 						"type": "DatasetReference"
 					}
 				]
